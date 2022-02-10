@@ -25,7 +25,5 @@
     position: absolute;
     top: 50%;
     left: 50px;
-    /* height: 100px;
-    width: 40px; */
-    /* background-color: orange; */
+    transition: 0.3s;
 }
