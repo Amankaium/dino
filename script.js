@@ -1,3 +1,6 @@
+var gameStop = false 
+var points = 0 
+
 document.addEventListener("DOMContentLoaded", main)
 
 function main () {
@@ -19,13 +22,32 @@ function go (event) {
         x -= 20
     } else if (event.code === "Space") {
         dino.style.top = `${y - 100}px`
-        setTimeout(() => {dino.style.top = `${y}px`}, 700)
+        setTimeout(() => {
+            dino.style.top = `${y}px`
+            setTimeout(() => checkStop(), 310)
+        }, 700)
     }
 
     dino.style.left = `${x}px`
 
+    // console.log(x, y)
+    setTimeout(() => checkStop(), 310)
+    
+}
+
+function checkStop() {
+    let dino = document.querySelector(".gamer")
+    let x = parseInt(window.getComputedStyle(dino).left)
+    let y = parseInt(window.getComputedStyle(dino).top)
+
     let handX = 54 + x
     let handY = 69 + y 
+
+    if (dino.style.transform === "scaleX(-1)") {
+        handX = 6 + x
+        handY = 69 + y
+    }
+    
 
     let tree = document.querySelector(".tree")
     let tw = parseInt(window.getComputedStyle(tree).width)
@@ -39,8 +61,19 @@ function go (event) {
     let y3 = y1 + th
     let x4 = x1 + tw
     let y4 = y1 + th
+
+    // console.log(x, y)
     
     if (handX > x1 && handX < x2 && handY < y3 && handY > y1) {
-        setTimeout(() => alert("GAME OVER!"), 310)
+        setTimeout(() => {
+            alert("GAME OVER!")
+            gameStop = true
+        }, 310)
     }
+
+    if (!gameStop && handX > x1) {
+        points++
+    }
+    console.log(points)
 }
+
