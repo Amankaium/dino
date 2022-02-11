@@ -27,3 +27,12 @@
     left: 50px;
     transition: 0.3s;
 }
+
+.tree {
+    position: absolute;
+    top: 60%;
+    left: 500px;
+    background-color: brown;
+    height: 100px;
+    width: 25px;
+}
